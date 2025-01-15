@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -461,7 +462,6 @@
         const slider = document.querySelector('.banner-slider');
         const slides = document.querySelectorAll('.banner-slide');
         let currentSlide = 0;
-        let autoSlideInterval;
 
         function showSlide(index) {
             slider.style.transform = `translateX(-${index * 100}%)`;
@@ -485,24 +485,13 @@
             });
         }
 
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-            }, 5000);
-        }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-
-        // Initialize slider
         createDots();
-        startAutoSlide();
 
-        // Pause on hover
-        slider.addEventListener('mouseenter', stopAutoSlide);
-        slider.addEventListener('mouseleave', startAutoSlide);
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
 
         // Countdown Timer
         const countDownDate = new Date("Mar 1, 2025 00:00:00").getTime();
@@ -558,3 +547,4 @@
     </script>
 </body>
 </html>
+
