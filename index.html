@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspire 400K - Fueling the Next Generation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #00D67B;
+            --secondary-color: #F5F8FA;
+            --text-color: #333333;
+            --background-color: #FFFFFF;
+            --accent-color: #FFD700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .banner-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .banner-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .banner-slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .banner-nav {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .banner-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .banner-dot.active {
+            background: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .content {
+            padding-top: 1rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .prize-amount {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: var(--secondary-color);
+            padding: 0.5rem;
+            border-radius: 10px;
+            min-width: 70px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .countdown-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            color: var(--text-color);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .benefits-section, .timeline-section {
+            background: var(--secondary-color);
+            padding: 1rem;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 0.9rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 0.5rem;
+            padding-left: 0.5rem;
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .timeline-date {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .partners-section {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .partners-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .partner-logo {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .cta-button {
+            display: block;
+            width: 200px;
+            margin: 1rem auto;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background-color: #00B868;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1rem 0;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-logo {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-copyright {
+            margin-top: 0.5rem;
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        @media (min-width: 480px) {
+            .banner-container {
+                height: 250px;
+            }
+
+            .banner-nav {
+                bottom: 15px;
+                gap: 10px;
+            }
+
+            .banner-dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            .title {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .prize-amount {
+                font-size: 1.7rem;
+            }
+
+            .countdown-item {
+                min-width: 80px;
+            }
+
+            .countdown-number {
+                font-size: 1.7rem;
+            }
+
+            .countdown-label {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .banner-container {
+                height: 350px;
+            }
+
+            .banner-nav {
+                bottom: 20px;
+                gap: 12px;
+            }
+
+            .banner-dot {
+                width: 12px;
+                height: 12px;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .prize-amount {
+                font-size: 2rem;
+            }
+
+            .countdown-item {
+                min-width: 100px;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
+            .grid-container {
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .partner-logo {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .banner-container {
+                height: 400px;
+            }
+
+            .container {
+                padding: 2rem;
+            }
+
+            .content {
+                padding-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner-container">
+        <div class="banner-slider">
+            <div class="banner-slide" style="background-image: url('1\ $$4$$.png');"></div>         
+            <div class="banner-slide" style="background-image: url('2.png');"></div>
+            <div class="banner-slide" style="background-image: url('3.png');"></div>
+            <div class="banner-slide" style="background-image: url('7.png');"></div>
+            <div class="banner-slide" style="background-image: url('4.png');"></div>
+            <div class="banner-slide" style="background-image: url('5.png');"></div>
+            <div class="banner-slide" style="background-image: url('8.png');"></div>
+            <div class="banner-slide" style="background-image: url('6.png');"></div>
+          
+        </div>
+        <div class="banner-nav">
+            <!-- Dots will be dynamically created by JavaScript -->
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h1 class="title">ASPIRE <span id="titleNumber">0</span>K</h1>
+            <p class="subtitle">Fueling the Next Generation of Entrepreneurs</p>
+            <div class="prize-amount">₹<span id="prizeAmount">0</span> Grand Prize!</div>
+
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+
+            <a href="https://www.connexgrow.com/" class="cta-button" id="registerButton">Register Now</a>
+
+            <div class="grid-container">
+                <div class="benefits-section">
+                    <h2 class="section-title">CONNEXGROW PRESENTS</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">INR 4 Lac Grand Prize</div>
+                        <div class="benefit-item">INR 10 LAC in Perks</div>
+                        <div class="benefit-item">Mentoring & Incubation Support</div>
+                        <div class="benefit-item">Networking Opportunities</div>
+                        <div class="benefit-item">Learning Interaction with Mentors</div>
+                        <div class="benefit-item">Corporate Association Opportunity</div>
+                        <div class="benefit-item">Funding Readiness for selected startups</div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <h2 class="section-title">TIMELINE</h2>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1 MAR</div>
+                        <div>APPLICATION START</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">15 MAR</div>
+                        <div>APPLICATION DEADLINE</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">1 APR</div>
+                        <div>SHORTLIST ANNOUNCEMENT</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">15 APR</div>
+                        <div>GRAND FINALE</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="partners-section">
+                <h2 class="section-title">IN ASSOCIATION WITH</h2>
+                <div class="partners-grid">
+                    <div class="partner-logo">
+                        <img src="images.jfif" alt="Partner 1" width="80" height="80">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="images.jfif" alt="Partner 2" width="80" height="80">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="images.jfif" alt="Partner 3" width="80" height="80">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="images.jfif" alt="Partner 4" width="80" height="80">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="images.jfif" alt="Partner 5" width="80" height="80">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-logo">Powered by ConnexGrow</div>
+            <div class="footer-links">
+                <a href="http://www.connexgrow.com" target="_blank">www.connexgrow.com</a>
+            </div>
+            <div class="footer-copyright">
+                All rights reserved by NULYF GLOBAL © 2025
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Banner Slider
+        const slider = document.querySelector('.banner-slider');
+        const slides = document.querySelectorAll('.banner-slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+            document.querySelectorAll('.banner-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function createDots() {
+            const navContainer = document.querySelector('.banner-nav');
+            navContainer.innerHTML = '';
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('banner-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                });
+                navContainer.appendChild(dot);
+            });
+        }
+
+        createDots();
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+
+        // Countdown Timer
+        const countDownDate = new Date("Mar 1, 2025 00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Number animations
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const titleNumber = document.getElementById("titleNumber");
+        const prizeAmount = document.getElementById("prizeAmount");
+
+        animateValue(titleNumber, 0, 400, 2000);
+        animateValue(prizeAmount, 0, 400000, 2000);
+
+        // Register button handler
+        document.getElementById('registerButton').addEventListener('click', function(e) {
+            // Remove the preventDefault() call to allow the default link behavior
+            // e.preventDefault();
+            // The link will now redirect to https://www.connexgrow.com/ when clicked
+        });
+    </script>
+</body>
+</html>
+
