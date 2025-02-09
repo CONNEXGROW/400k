@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aspire 400K - Fueling the Next Generation</title>
     <style>
-             :root {
+        :root {
             --primary-color: #00D67B;
             --secondary-color: #F5F8FA;
             --text-color: #333333;
@@ -456,17 +456,17 @@
             <div></div>
         </div>
     </nav>
-
     <div class="banner-container">
         <div class="banner-slider">
-          <div class="banner-slide" style="background-image: url('1\ \(4\).png');"></div>    
+            <div class="banner-slide" style="background-image: url('1\ \(4\).png');"></div>       
             <div class="banner-slide" style="background-image: url('2.png');"></div>
             <div class="banner-slide" style="background-image: url('3.png');"></div>
+            <div class="banner-slide" style="background-image: url('7.png');"></div>
             <div class="banner-slide" style="background-image: url('4.png');"></div>
             <div class="banner-slide" style="background-image: url('5.png');"></div>
-            <div class="banner-slide" style="background-image: url('6.png');"></div>
-            <div class="banner-slide" style="background-image: url('7.png');"></div>
             <div class="banner-slide" style="background-image: url('8.png');"></div>
+            <div class="banner-slide" style="background-image: url('6.png');"></div>
+          
         </div>
         <div class="banner-nav">
             <!-- Dots will be dynamically created by JavaScript -->
@@ -611,12 +611,6 @@
             const now = new Date().getTime();
             const distance = countDownDate - now;
 
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById("countdown").innerHTML = "EXPIRED";
-                return;
-            }
-
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -626,6 +620,11 @@
             document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
             document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
             document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
         }
 
         const countdownInterval = setInterval(updateCountdown, 1000);
@@ -651,21 +650,11 @@
         animateValue(titleNumber, 0, 400, 2000);
         animateValue(prizeAmount, 0, 400000, 2000);
 
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when a link is clicked (for mobile)
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
+        // Register button handler
+        document.getElementById('registerButton').addEventListener('click', function(e) {
+            // Remove the preventDefault() call to allow the default link behavior
+            // e.preventDefault();
+            // The link will now redirect to https://www.connexgrow.com/ when clicked
         });
     </script>
 </body>
